@@ -16,18 +16,7 @@
   </header>
 
   <main class="container">
-    <section id="setupBox" class="card full hidden">
-      <h2>⚠️ Cần cấu hình Firebase trước khi dùng</h2>
-      <p class="meta">Mở file này, tìm đoạn <b>firebaseConfig</b> và thay thông tin Firebase của bạn. Bản này chỉ cần Firestore, không cần bật Firebase Storage. Sau đó deploy lên Firebase Hosting / Render / Netlify đều được.</p>
-      <div class="setup-code">const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "..."
-};</div>
-    </section>
+    
 
     <section class="card">
       <h2>Gửi thông tin món quà</h2>
@@ -80,7 +69,7 @@
         <label>Mật khẩu admin</label>
         <input id="adminPassword" type="password" placeholder="Nhập mật khẩu tài khoản Firebase Auth" />
         <button id="adminLoginBtn" class="btn-primary">Đăng nhập admin</button>
-        <div id="adminLoginNotice" class="notice show warn">Admin đăng nhập bằng Firebase Authentication. Mật khẩu không còn nằm trong file HTML.</div>
+       
       </div>
 
       <div id="adminPanel" class="hidden">
