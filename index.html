@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skyward Gift Tracking Online</title>
+  <style>
+    :root{--blue:#5bbcff;--blue-dark:#248fd6;--pink:#ff8fc7;--bg:#f4fbff;--card:#fff;--text:#123047;--muted:#6f8798;--border:#dceef8;--green:#14b86a;--orange:#ff9f1c;--red:#ff5c7a;--shadow:0 12px 30px rgba(55,143,200,.14)}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eaf8ff,#fff4fb);color:var(--text);min-height:100vh}header{text-align:center;padding:34px 16px 18px}header h1{margin:0;font-size:clamp(26px,5vw,42px);color:var(--blue-dark);letter-spacing:.5px}header p{margin:10px auto 0;max-width:760px;color:var(--muted);line-height:1.55}.container{width:min(1120px,calc(100% - 28px));margin:0 auto 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card.full{grid-column:1/-1}h2{margin:0 0 16px;font-size:22px;color:var(--blue-dark)}label{display:block;font-weight:700;margin:14px 0 7px;font-size:14px}input,select,textarea{width:100%;border:1px solid #cfe5f3;border-radius:14px;padding:12px 13px;font-size:15px;outline:none;background:#fff;color:var(--text)}textarea{min-height:94px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(91,188,255,.18)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}button{border:0;border-radius:999px;padding:12px 18px;font-size:15px;font-weight:800;cursor:pointer;transition:.2s ease}button:hover{transform:translateY(-1px)}button:disabled{opacity:.55;cursor:not-allowed;transform:none}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--pink));color:white;margin-top:16px;width:100%}.btn-small{padding:9px 13px;font-size:13px;background:#eaf6ff;color:var(--blue-dark);border:1px solid #cdeafa}.btn-danger{background:#fff0f3;color:var(--red);border:1px solid #ffd2dc}.notice{margin-top:13px;padding:12px 14px;border-radius:14px;background:#eef9ff;border:1px solid #d3efff;color:#22648f;line-height:1.45;display:none}.notice.show{display:block}.notice.warn{background:#fff8e8;border-color:#ffe3aa;color:#93610a}.gift-list{display:grid;gap:14px;margin-top:14px}.gift-item{border:1px solid var(--border);background:#fff;border-radius:18px;padding:15px}.gift-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}.gift-title{font-weight:900;font-size:17px}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;white-space:nowrap}.tag.pending{background:#fff8e8;color:#a66b00}.tag.accepted{background:#eafaf1;color:#0e8b4f}.tag.arrived{background:#eef6ff;color:#2576b7}.tag.sending{background:#fff0f6;color:#d13e82}.tag.done{background:#f0edff;color:#5b46ca}.tag.rejected{background:#fff0f3;color:#d33151}.meta{color:var(--muted);font-size:14px;line-height:1.6}.proof{width:110px;height:110px;object-fit:cover;border-radius:14px;border:1px solid #e5eef5;margin-top:10px;cursor:pointer}.admin-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.admin-tools select,.admin-tools input{border-radius:999px;padding:10px 12px;font-size:13px}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.timeline{margin-top:10px;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.7}.hidden{display:none!important}.top-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.empty{text-align:center;color:var(--muted);padding:22px 10px;border:1px dashed #cfe5f3;border-radius:16px;background:#fbfeff}.setup-code{font-family:Consolas,monospace;background:#f7fbff;border:1px solid #dceef8;border-radius:14px;padding:12px;white-space:pre-wrap;font-size:13px;color:#31556d;overflow:auto}.status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.ctv-box{margin-top:12px;padding:12px 14px;border-radius:14px;background:#f1fbff;border:1px solid #cfefff;color:#205b7a;line-height:1.55}.ctv-box b{color:#0f7dbb}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat-card{background:#f7fcff;border:1px solid var(--border);border-radius:16px;padding:13px}.stat-num{font-size:24px;font-weight:900;color:var(--blue-dark);line-height:1}.stat-label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.35}@media(max-width:780px){.stats-grid{grid-template-columns:1fr}}.pill{font-size:12px;font-weight:800;border-radius:999px;padding:7px 10px;background:#edf8ff;color:#2177ad}@media(max-width:780px){.container{grid-template-columns:1fr}.row,.admin-tools{grid-template-columns:1fr}.card{padding:16px;border-radius:18px}.gift-head{flex-direction:column}.tag{white-space:normal}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎁 Skyward Gift Tracking</h1>
+    <p>Form online dùng chung: người gửi nhập thông tin quà, admin duyệt và cập nhật lộ trình; người gửi tra cứu bằng 4 số cuối SĐT.</p>
+  </header>
+
+  <main class="container">
+    <section id="setupBox" class="card full hidden">
+      <h2>⚠️ Cần cấu hình Firebase trước khi dùng</h2>
+      <p class="meta">Mở file này, tìm đoạn <b>firebaseConfig</b> và thay thông tin Firebase của bạn. Bản này chỉ cần Firestore, không cần bật Firebase Storage. Sau đó deploy lên Firebase Hosting / Render / Netlify đều được.</p>
+      <div class="setup-code">const firebaseConfig = {
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "..."
+};</div>
+    </section>
+
+    <section class="card">
+      <h2>Gửi thông tin món quà</h2>
+      <form id="giftForm">
+        <label>Quà muốn gửi là gì?</label>
+        <input id="giftName" required placeholder="VD: hoa, thư tay, album, quà handmade..." />
+
+        <label>Địa chỉ muốn gửi</label>
+        <select id="sendAddress" required>
+          <option value="">-- Chọn địa chỉ --</option>
+          <option value="Hà Nội">Hà Nội</option>
+          <option value="HCM">HCM / Sài Gòn</option>
+        </select>
+
+        <label>Proof Sky / bằng chứng ủng hộ</label>
+        <input id="proofImage" type="file" accept="image/*" required />
+
+        <div class="row">
+          <div>
+            <label>4 số cuối SĐT</label>
+            <input id="phoneLast4" inputmode="numeric" required maxlength="4" pattern="[0-9]{4}" placeholder="VD: 1234" />
+          </div>
+          <div>
+            <label>Tên người gửi</label>
+            <input id="senderName" placeholder="Có thể bỏ trống" />
+          </div>
+        </div>
+
+        <label>Ghi chú thêm</label>
+        <textarea id="note" placeholder="VD: quà dễ vỡ, cần giữ hộp, thông tin người gửi..."></textarea>
+
+        <button id="submitBtn" class="btn-primary" type="submit">Gửi thông tin</button>
+        <div id="submitNotice" class="notice"></div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Tra cứu lộ trình</h2>
+      <label>Nhập 4 số cuối SĐT đã điền</label>
+      <input id="lookupPhone" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="VD: 1234" />
+      <button id="lookupBtn" class="btn-primary">Xem thông tin</button>
+      <div id="lookupResult" class="gift-list"></div>
+    </section>
+
+    <section class="card full">
+      <h2>Khu admin</h2>
+      <div id="adminLogin">
+        <label>Email admin</label>
+        <input id="adminEmail" type="email" placeholder="VD: admin@skyward.vn" />
+        <label>Mật khẩu admin</label>
+        <input id="adminPassword" type="password" placeholder="Nhập mật khẩu tài khoản Firebase Auth" />
+        <button id="adminLoginBtn" class="btn-primary">Đăng nhập admin</button>
+        <div id="adminLoginNotice" class="notice show warn">Admin đăng nhập bằng Firebase Authentication. Mật khẩu không còn nằm trong file HTML.</div>
+      </div>
+
+      <div id="adminPanel" class="hidden">
+        <div class="top-actions">
+          <button id="logoutAdmin" class="btn-small">Đăng xuất</button>
+          <button id="exportData" class="btn-small">Xuất dữ liệu JSON</button>
+          <button id="refreshAdmin" class="btn-small">Tải lại dữ liệu</button>
+        </div>
+        <div id="adminStats" class="stats-grid"></div>
+        <label>Lọc trạng thái</label>
+        <select id="adminFilter">
+          <option value="all">Tất cả</option>
+          <option value="pending">Chờ admin duyệt</option>
+          <option value="accepted">Chấp nhận</option>
+          <option value="arrived">Quà đã đến địa chỉ CTV</option>
+          <option value="sending">Quà đang được gửi đến Sơn Tùng</option>
+          <option value="done">Quà đã được gửi</option>
+          <option value="rejected">Từ chối nhận</option>
+        </select>
+        <div id="adminList" class="gift-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+    // BƯỚC 1: Thay toàn bộ thông tin này bằng Firebase config của bạn. Bản này KHÔNG cần bật Storage.
+    const firebaseConfig = {
+  apiKey: "AIzaSyDbg_vHFf4DsZc5Hadk1yJwNe7Y-wTN8nA",
+  authDomain: "form-gift.firebaseapp.com",
+  projectId: "form-gift",
+  storageBucket: "form-gift.firebasestorage.app",
+  messagingSenderId: "763163289690",
+  appId: "1:763163289690:web:5b14f6622b9fbaabe0d063",
+  measurementId: "G-PK86RTGRN9"
+};
+
+    // BƯỚC 2: Điền email các tài khoản admin đã tạo trong Firebase Authentication.
+    // Có thể thêm nhiều admin, phân tách bằng dấu phẩy. Ví dụ: ["admin1@gmail.com", "admin2@gmail.com"]
+    const ADMIN_EMAILS = [
+      "hongnhungnt1508@gmail.com",
+      "admin2@gmail.com"
+    ];
+
+    const COLLECTION_NAME = "gifts";
+
+    // Sửa 2 dòng địa chỉ CTV thật tại đây trước khi public web.
+    const CTV_ADDRESSES = {
+      hn: "[Điền địa chỉ CTV tại Hà Nội]",
+      hcm: "[Điền địa chỉ CTV tại HCM]"
+    };
+
+    const statusMap = {
+      pending: { text: "Chờ admin duyệt", className: "pending" },
+      accepted: { text: "Chấp nhận", className: "accepted" },
+      arrived: { text: "Quà đã đến địa chỉ CTV", className: "arrived" },
+      sending: { text: "Quà đang được gửi đến Sơn Tùng", className: "sending" },
+      done: { text: "Quà đã được gửi", className: "done" },
+      rejected: { text: "Từ chối nhận", className: "rejected" }
+    };
+
+    const $ = id => document.getElementById(id);
+    let app, db, auth;
+    let currentAdminUser = null;
+    let allGifts = [];
+
+    function isFirebaseConfigured() {
+      return firebaseConfig.apiKey && !firebaseConfig.apiKey.includes("PASTE_") && firebaseConfig.projectId && !firebaseConfig.projectId.includes("PASTE_");
+    }
+
+    function isAllowedAdmin(user) {
+      if (!user || !user.email) return false;
+      return ADMIN_EMAILS.map(e => e.toLowerCase().trim()).includes(user.email.toLowerCase().trim());
+    }
+
+    function requireAdmin() {
+      if (!isAllowedAdmin(currentAdminUser)) {
+        alert("Bạn chưa đăng nhập bằng tài khoản admin hợp lệ.");
+        throw new Error("Not allowed admin");
+      }
+    }
+
+    function showAdminPanel(user) {
+      currentAdminUser = user;
+      $("adminLogin").classList.add("hidden");
+      $("adminPanel").classList.remove("hidden");
+      renderAdminList();
+    }
+
+    function showAdminLogin(message = "") {
+      currentAdminUser = null;
+      $("adminPanel").classList.add("hidden");
+      $("adminLogin").classList.remove("hidden");
+      if (message) showNotice($("adminLoginNotice"), message, "warn");
+    }
+
+    function showNotice(el, message, type = "normal") {
+      el.innerHTML = message;
+      el.className = "notice show" + (type === "warn" ? " warn" : "");
+    }
+
+    function escapeHtml(str = "") {
+      return String(str).replace(/[&<>'"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" }[c]));
+    }
+
+    function addressKey(sendAddress = "") {
+      const value = String(sendAddress).toLowerCase();
+      if (value.includes("hà nội") || value.includes("ha noi") || value === "hn") return "hn";
+      if (value.includes("sài gòn") || value.includes("sai gon") || value.includes("hcm") || value.includes("hồ chí minh") || value.includes("ho chi minh")) return "hcm";
+      return "";
+    }
+
+    function displayCity(sendAddress = "") {
+      const key = addressKey(sendAddress);
+      if (key === "hn") return "Hà Nội";
+      if (key === "hcm") return "HCM / Sài Gòn";
+      return sendAddress || "-";
+    }
+
+    function getCtvAddress(sendAddress = "") {
+      const key = addressKey(sendAddress);
+      return key ? CTV_ADDRESSES[key] : "";
+    }
+
+    function shouldShowCtvAddress(status) {
+      return ["accepted", "arrived", "sending", "done"].includes(status);
+    }
+
+    function nowText() {
+      return new Date().toLocaleString("vi-VN", { hour12: false });
+    }
+
+    function uid() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    }
+
+    function normalizeGift(id, data) {
+      return {
+        id,
+        giftName: data.giftName || "",
+        sendAddress: data.sendAddress || "",
+        phoneLast4: data.phoneLast4 || "",
+        senderName: data.senderName || "",
+        note: data.note || "",
+        proofDataUrl: data.proofDataUrl || data.proofUrl || "",
+        status: data.status || "pending",
+        adminNote: data.adminNote || "",
+        createdAtText: data.createdAtText || "",
+        updatedAtText: data.updatedAtText || "",
+        timeline: Array.isArray(data.timeline) ? data.timeline : []
+      };
+    }
+
+    async function loadAllGifts() {
+      const snap = await getDocs(collection(db, COLLECTION_NAME));
+      allGifts = snap.docs.map(d => normalizeGift(d.id, d.data()));
+      allGifts.sort((a, b) => (b.id || "").localeCompare(a.id || ""));
+      return allGifts;
+    }
+
+    async function compressProofImage(file) {
+      if (!file.type.startsWith("image/")) throw new Error("File không phải ảnh");
+
+      const imageUrl = URL.createObjectURL(file);
+      const img = await new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = imageUrl;
+      });
+
+      const maxSide = 900;
+      let { width, height } = img;
+      if (width > maxSide || height > maxSide) {
+        const ratio = Math.min(maxSide / width, maxSide / height);
+        width = Math.round(width * ratio);
+        height = Math.round(height * ratio);
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      URL.revokeObjectURL(imageUrl);
+
+      let quality = 0.72;
+      let dataUrl = canvas.toDataURL("image/jpeg", quality);
+      while (dataUrl.length > 750000 && quality > 0.35) {
+        quality -= 0.08;
+        dataUrl = canvas.toDataURL("image/jpeg", quality);
+      }
+
+      if (dataUrl.length > 900000) {
+        throw new Error("Ảnh proof vẫn quá nặng sau khi nén. Hãy chọn ảnh nhỏ hơn hoặc crop lại ảnh.");
+      }
+      return dataUrl;
+    }
+
+    function renderGiftCard(gift, isAdmin = false) {
+      const st = statusMap[gift.status] || statusMap.pending;
+      const timelineHtml = gift.timeline?.length
+        ? `<ol class="timeline">${gift.timeline.map(t => `<li>${escapeHtml(t)}</li>`).join("")}</ol>`
+        : `<div class="meta">Chưa có cập nhật lộ trình.</div>`;
+      const proofSrc = gift.proofDataUrl || "";
+      const proofHtml = proofSrc ? `<br><img class="proof" src="${proofSrc}" onclick="window.open('${proofSrc}', '_blank')" alt="Proof Sky" />` : "";
+      const ctvAddress = getCtvAddress(gift.sendAddress);
+      const ctvBox = (!isAdmin && shouldShowCtvAddress(gift.status) && ctvAddress)
+        ? `<div class="ctv-box">✅ Admin đã chấp nhận nhận quà. Bạn vui lòng gửi quà tới địa chỉ CTV tại <b>${escapeHtml(displayCity(gift.sendAddress))}</b>:<br><b>${escapeHtml(ctvAddress)}</b></div>`
+        : "";
+      const adminTools = isAdmin ? `
+        <div class="admin-tools">
+          <select id="status-${gift.id}">
+            ${Object.entries(statusMap).map(([key, val]) => `<option value="${key}" ${gift.status === key ? "selected" : ""}>${val.text}</option>`).join("")}
+          </select>
+          <input id="note-${gift.id}" placeholder="Ghi chú admin / lộ trình" value="${escapeHtml(gift.adminNote || "")}" />
+        </div>
+        <div class="admin-actions">
+          <button class="btn-small" data-action="update" data-id="${gift.id}">Cập nhật</button>
+          <button class="btn-small btn-danger" data-action="reject" data-id="${gift.id}">Từ chối nhận quà</button>
+          <button class="btn-small btn-danger" data-action="delete" data-id="${gift.id}">Xóa</button>
+        </div>` : "";
+
+      return `
+        <article class="gift-item">
+          <div class="gift-head">
+            <div>
+              <div class="gift-title">${escapeHtml(gift.giftName)}</div>
+              <div class="meta">Người gửi: ${escapeHtml(gift.senderName || "Ẩn danh")} · 4 số cuối SĐT: ${escapeHtml(gift.phoneLast4)}</div>
+            </div>
+            <span class="tag ${st.className}">${st.text}</span>
+          </div>
+          <div class="meta">
+            Địa chỉ muốn gửi: <b>${escapeHtml(displayCity(gift.sendAddress))}</b><br>
+            Ngày gửi form: ${escapeHtml(gift.createdAtText || "-")}<br>
+            Cập nhật gần nhất: ${escapeHtml(gift.updatedAtText || "-")}<br>
+            Ghi chú người gửi: ${escapeHtml(gift.note || "Không có")}
+            ${gift.adminNote ? `<br>Ghi chú admin: <b>${escapeHtml(gift.adminNote)}</b>` : ""}
+            ${proofHtml}
+          </div>
+          ${ctvBox}
+          <div class="status-bar"><span class="pill">Lộ trình món quà</span></div>
+          ${timelineHtml}
+          ${adminTools}
+        </article>`;
+    }
+
+    function renderList(container, list, isAdmin = false) {
+      if (!list.length) {
+        container.innerHTML = `<div class="empty">Chưa có dữ liệu phù hợp.</div>`;
+        return;
+      }
+      container.innerHTML = list.map(g => renderGiftCard(g, isAdmin)).join("");
+    }
+
+    function renderAdminStats() {
+      const total = allGifts.length;
+      const hn = allGifts.filter(g => addressKey(g.sendAddress) === "hn").length;
+      const hcm = allGifts.filter(g => addressKey(g.sendAddress) === "hcm").length;
+      const accepted = allGifts.filter(g => ["accepted", "arrived", "sending", "done"].includes(g.status)).length;
+      const arrived = allGifts.filter(g => ["arrived", "sending", "done"].includes(g.status)).length;
+      $("adminStats").innerHTML = `
+        <div class="stat-card"><div class="stat-num">${total}</div><div class="stat-label">Tổng số người đã đăng ký gửi quà<br>HN: <b>${hn}</b> · HCM: <b>${hcm}</b></div></div>
+        <div class="stat-card"><div class="stat-num">${accepted}</div><div class="stat-label">Số quà đã được admin chấp nhận</div></div>
+        <div class="stat-card"><div class="stat-num">${arrived}</div><div class="stat-label">Số quà đã được gửi đến CTV</div></div>`;
+    }
+
+    async function renderAdminList() {
+      if (!isAllowedAdmin(currentAdminUser)) return;
+      await loadAllGifts();
+      renderAdminStats();
+      const filter = $("adminFilter").value;
+      const list = filter === "all" ? allGifts : allGifts.filter(g => g.status === filter);
+      renderList($("adminList"), list, true);
+    }
+
+    async function init() {
+      if (!isFirebaseConfigured()) {
+        $("setupBox").classList.remove("hidden");
+        showNotice($("submitNotice"), "Chưa cấu hình Firebase nên form chưa thể gửi online.", "warn");
+        $("submitBtn").disabled = true;
+        return;
+      }
+
+      app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+
+      onAuthStateChanged(auth, user => {
+        if (isAllowedAdmin(user)) {
+          showAdminPanel(user);
+        } else {
+          if (user && !isAllowedAdmin(user)) {
+            signOut(auth);
+            showAdminLogin("Email này đã đăng nhập Firebase nhưng không nằm trong danh sách ADMIN_EMAILS.");
+          } else {
+            showAdminLogin();
+          }
+        }
+      });
+    }
+
+    $("giftForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      const phoneLast4 = $("phoneLast4").value.trim();
+      const file = $("proofImage").files[0];
+      if (!/^\d{4}$/.test(phoneLast4)) return showNotice($("submitNotice"), "Vui lòng nhập đúng 4 số cuối SĐT.", "warn");
+      if (!file) return showNotice($("submitNotice"), "Vui lòng upload ảnh proof Sky.", "warn");
+      if (file.size > 8 * 1024 * 1024) return showNotice($("submitNotice"), "Ảnh proof tối đa 8MB. Web sẽ tự nén ảnh trước khi lưu.", "warn");
+
+      $("submitBtn").disabled = true;
+      $("submitBtn").textContent = "Đang gửi...";
+      try {
+        const proofDataUrl = await compressProofImage(file);
+        const created = nowText();
+        await addDoc(collection(db, COLLECTION_NAME), {
+          giftName: $("giftName").value.trim(),
+          sendAddress: $("sendAddress").value,
+          phoneLast4,
+          senderName: $("senderName").value.trim(),
+          note: $("note").value.trim(),
+          proofDataUrl,
+          status: "pending",
+          adminNote: "",
+          createdAtText: created,
+          updatedAtText: created,
+          timeline: [`${created}: Đã gửi thông tin, chờ admin duyệt.`],
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        });
+        e.target.reset();
+        showNotice($("submitNotice"), "Đã gửi thông tin thành công. Bạn có thể tra cứu lại bằng 4 số cuối SĐT.");
+        if (isAllowedAdmin(currentAdminUser)) renderAdminList();
+      } catch (err) {
+        console.error(err);
+        showNotice($("submitNotice"), "Lỗi khi gửi dữ liệu. Hãy kiểm tra Firebase config, Firestore rules, kích thước ảnh hoặc kết nối mạng.", "warn");
+      } finally {
+        $("submitBtn").disabled = false;
+        $("submitBtn").textContent = "Gửi thông tin";
+      }
+    });
+
+    $("lookupBtn").addEventListener("click", async () => {
+      const phone = $("lookupPhone").value.trim();
+      if (!/^\d{4}$/.test(phone)) {
+        $("lookupResult").innerHTML = `<div class="empty">Vui lòng nhập đúng 4 số cuối SĐT.</div>`;
+        return;
+      }
+      $("lookupResult").innerHTML = `<div class="empty">Đang tải dữ liệu...</div>`;
+      try {
+        const q = query(collection(db, COLLECTION_NAME), where("phoneLast4", "==", phone));
+        const snap = await getDocs(q);
+        const list = snap.docs.map(d => normalizeGift(d.id, d.data()));
+        list.sort((a, b) => (b.id || "").localeCompare(a.id || ""));
+        renderList($("lookupResult"), list, false);
+      } catch (err) {
+        console.error(err);
+        $("lookupResult").innerHTML = `<div class="empty">Không tải được dữ liệu. Hãy kiểm tra cấu hình Firebase.</div>`;
+      }
+    });
+
+    $("adminLoginBtn").addEventListener("click", async () => {
+      const email = $("adminEmail").value.trim();
+      const password = $("adminPassword").value;
+      if (!email || !password) return showNotice($("adminLoginNotice"), "Vui lòng nhập email và mật khẩu admin.", "warn");
+      if (!ADMIN_EMAILS.map(e => e.toLowerCase().trim()).includes(email.toLowerCase())) {
+        return showNotice($("adminLoginNotice"), "Email này chưa được thêm vào danh sách ADMIN_EMAILS trong file web.", "warn");
+      }
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        $("adminPassword").value = "";
+      } catch (err) {
+        console.error(err);
+        showNotice($("adminLoginNotice"), "Đăng nhập thất bại. Kiểm tra email/mật khẩu hoặc đã bật Email/Password trong Firebase Authentication chưa.", "warn");
+      }
+    });
+
+    $("logoutAdmin").addEventListener("click", async () => {
+      await signOut(auth);
+      showAdminLogin();
+    });
+
+    $("adminFilter").addEventListener("change", renderAdminList);
+    $("refreshAdmin").addEventListener("click", renderAdminList);
+
+    $("adminList").addEventListener("click", async e => {
+      const btn = e.target.closest("button[data-action]");
+      if (!btn) return;
+      requireAdmin();
+      const id = btn.dataset.id;
+      const action = btn.dataset.action;
+      const gift = allGifts.find(g => g.id === id);
+      if (!gift) return;
+
+      if (action === "delete") {
+        if (!confirm("Xóa hồ sơ quà này?")) return;
+        await deleteDoc(doc(db, COLLECTION_NAME, id));
+        await renderAdminList();
+        return;
+      }
+
+      if (action === "reject") {
+        if (!confirm("Xác nhận từ chối nhận món quà này?")) return;
+        const newNote = $(`note-${id}`).value.trim();
+        const time = nowText();
+        const timeline = Array.isArray(gift.timeline) ? [...gift.timeline] : [];
+        timeline.push(`${time}: Từ chối nhận${newNote ? " - " + newNote : ""}`);
+        await updateDoc(doc(db, COLLECTION_NAME, id), {
+          status: "rejected",
+          adminNote: newNote,
+          updatedAtText: time,
+          updatedAt: serverTimestamp(),
+          timeline
+        });
+        await renderAdminList();
+        return;
+      }
+
+      if (action === "update") {
+        const newStatus = $(`status-${id}`).value;
+        const newNote = $(`note-${id}`).value.trim();
+        const time = nowText();
+        const statusText = statusMap[newStatus]?.text || newStatus;
+        const timeline = Array.isArray(gift.timeline) ? [...gift.timeline] : [];
+        timeline.push(`${time}: ${statusText}${newNote ? " - " + newNote : ""}`);
+        await updateDoc(doc(db, COLLECTION_NAME, id), {
+          status: newStatus,
+          adminNote: newNote,
+          updatedAtText: time,
+          updatedAt: serverTimestamp(),
+          timeline
+        });
+        await renderAdminList();
+      }
+    });
+
+    $("exportData").addEventListener("click", async () => {
+      requireAdmin();
+      await loadAllGifts();
+      const blob = new Blob([JSON.stringify(allGifts, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `skyward-gifts-${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    init();
+  </script>
+</body>
+</html>
