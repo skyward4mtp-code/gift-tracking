@@ -6,13 +6,13 @@
   <title>Skyward Gift Tracking Online</title>
   <style>
     :root{--blue:#5bbcff;--blue-dark:#248fd6;--pink:#ff8fc7;--bg:#f4fbff;--card:#fff;--text:#123047;--muted:#6f8798;--border:#dceef8;--green:#14b86a;--orange:#ff9f1c;--red:#ff5c7a;--shadow:0 12px 30px rgba(55,143,200,.14)}
-    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eaf8ff,#fff4fb);color:var(--text);min-height:100vh}header{text-align:center;padding:34px 16px 18px}header h1{margin:0;font-size:clamp(26px,5vw,42px);color:var(--blue-dark);letter-spacing:.5px}header p{margin:10px auto 0;max-width:760px;color:var(--muted);line-height:1.55}.container{width:min(1120px,calc(100% - 28px));margin:0 auto 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card.full{grid-column:1/-1}h2{margin:0 0 16px;font-size:22px;color:var(--blue-dark)}label{display:block;font-weight:700;margin:14px 0 7px;font-size:14px}input,select,textarea{width:100%;border:1px solid #cfe5f3;border-radius:14px;padding:12px 13px;font-size:15px;outline:none;background:#fff;color:var(--text)}textarea{min-height:94px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(91,188,255,.18)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}button{border:0;border-radius:999px;padding:12px 18px;font-size:15px;font-weight:800;cursor:pointer;transition:.2s ease}button:hover{transform:translateY(-1px)}button:disabled{opacity:.55;cursor:not-allowed;transform:none}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--pink));color:white;margin-top:16px;width:100%}.btn-small{padding:9px 13px;font-size:13px;background:#eaf6ff;color:var(--blue-dark);border:1px solid #cdeafa}.btn-danger{background:#fff0f3;color:var(--red);border:1px solid #ffd2dc}.notice{margin-top:13px;padding:12px 14px;border-radius:14px;background:#eef9ff;border:1px solid #d3efff;color:#22648f;line-height:1.45;display:none}.notice.show{display:block}.notice.warn{background:#fff8e8;border-color:#ffe3aa;color:#93610a}.gift-list{display:grid;gap:14px;margin-top:14px}.gift-item{border:1px solid var(--border);background:#fff;border-radius:18px;padding:15px}.gift-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}.gift-title{font-weight:900;font-size:17px}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;white-space:nowrap}.tag.pending{background:#fff8e8;color:#a66b00}.tag.accepted{background:#eafaf1;color:#0e8b4f}.tag.arrived{background:#eef6ff;color:#2576b7}.tag.sending{background:#fff0f6;color:#d13e82}.tag.done{background:#f0edff;color:#5b46ca}.tag.rejected{background:#fff0f3;color:#d33151}.meta{color:var(--muted);font-size:14px;line-height:1.6}.proof{width:110px;height:110px;object-fit:cover;border-radius:14px;border:1px solid #e5eef5;margin-top:10px;cursor:pointer}.admin-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.admin-tools select,.admin-tools input{border-radius:999px;padding:10px 12px;font-size:13px}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.timeline{margin-top:10px;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.7}.hidden{display:none!important}.top-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.empty{text-align:center;color:var(--muted);padding:22px 10px;border:1px dashed #cfe5f3;border-radius:16px;background:#fbfeff}.setup-code{font-family:Consolas,monospace;background:#f7fbff;border:1px solid #dceef8;border-radius:14px;padding:12px;white-space:pre-wrap;font-size:13px;color:#31556d;overflow:auto}.status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.ctv-box{margin-top:12px;padding:12px 14px;border-radius:14px;background:#f1fbff;border:1px solid #cfefff;color:#205b7a;line-height:1.55}.ctv-box b{color:#0f7dbb}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat-card{background:#f7fcff;border:1px solid var(--border);border-radius:16px;padding:13px}.stat-num{font-size:24px;font-weight:900;color:var(--blue-dark);line-height:1}.stat-label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.35}@media(max-width:780px){.stats-grid{grid-template-columns:1fr}}.pill{font-size:12px;font-weight:800;border-radius:999px;padding:7px 10px;background:#edf8ff;color:#2177ad}.help-text{margin:-2px 0 8px;color:var(--muted);font-size:13px;line-height:1.5;background:#f7fcff;border:1px solid var(--border);border-radius:14px;padding:10px 12px}.image-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.image-box{display:inline-block}.image-caption{font-size:12px;color:var(--muted);margin-top:5px;text-align:center;max-width:120px}@media(max-width:780px){.container{grid-template-columns:1fr}.row,.admin-tools{grid-template-columns:1fr}.card{padding:16px;border-radius:18px}.gift-head{flex-direction:column}.tag{white-space:normal}}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eaf8ff,#fff4fb);color:var(--text);min-height:100vh}header{text-align:center;padding:34px 16px 18px}header h1{margin:0;font-size:clamp(26px,5vw,42px);color:var(--blue-dark);letter-spacing:.5px}header p{margin:10px auto 0;max-width:760px;color:var(--muted);line-height:1.55}.container{width:min(1120px,calc(100% - 28px));margin:0 auto 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card.full{grid-column:1/-1}h2{margin:0 0 16px;font-size:22px;color:var(--blue-dark)}label{display:block;font-weight:700;margin:14px 0 7px;font-size:14px}input,select,textarea{width:100%;border:1px solid #cfe5f3;border-radius:14px;padding:12px 13px;font-size:15px;outline:none;background:#fff;color:var(--text)}textarea{min-height:94px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(91,188,255,.18)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}button{border:0;border-radius:999px;padding:12px 18px;font-size:15px;font-weight:800;cursor:pointer;transition:.2s ease}button:hover{transform:translateY(-1px)}button:disabled{opacity:.55;cursor:not-allowed;transform:none}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--pink));color:white;margin-top:16px;width:100%}.btn-small{padding:9px 13px;font-size:13px;background:#eaf6ff;color:var(--blue-dark);border:1px solid #cdeafa}.btn-danger{background:#fff0f3;color:var(--red);border:1px solid #ffd2dc}.notice{margin-top:13px;padding:12px 14px;border-radius:14px;background:#eef9ff;border:1px solid #d3efff;color:#22648f;line-height:1.45;display:none}.notice.show{display:block}.notice.warn{background:#fff8e8;border-color:#ffe3aa;color:#93610a}.gift-list{display:grid;gap:14px;margin-top:14px}.gift-item{border:1px solid var(--border);background:#fff;border-radius:18px;padding:15px}.gift-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}.gift-title{font-weight:900;font-size:17px}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;white-space:nowrap}.tag.pending{background:#fff8e8;color:#a66b00}.tag.accepted{background:#eafaf1;color:#0e8b4f}.tag.arrived{background:#eef6ff;color:#2576b7}.tag.sending{background:#fff0f6;color:#d13e82}.tag.done{background:#f0edff;color:#5b46ca}.tag.rejected{background:#fff0f3;color:#d33151}.meta{color:var(--muted);font-size:14px;line-height:1.6}.proof{width:110px;height:110px;object-fit:cover;border-radius:14px;border:1px solid #e5eef5;margin-top:10px;cursor:pointer}.admin-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.admin-tools select,.admin-tools input{border-radius:999px;padding:10px 12px;font-size:13px}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.timeline{margin-top:10px;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.7}.hidden{display:none!important}.top-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.empty{text-align:center;color:var(--muted);padding:22px 10px;border:1px dashed #cfe5f3;border-radius:16px;background:#fbfeff}.setup-code{font-family:Consolas,monospace;background:#f7fbff;border:1px solid #dceef8;border-radius:14px;padding:12px;white-space:pre-wrap;font-size:13px;color:#31556d;overflow:auto}.status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.ctv-box{margin-top:12px;padding:12px 14px;border-radius:14px;background:#f1fbff;border:1px solid #cfefff;color:#205b7a;line-height:1.55}.ctv-box b{color:#0f7dbb}.ctv-detail{margin-top:8px}.ctv-row{margin-top:4px}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat-card{background:#f7fcff;border:1px solid var(--border);border-radius:16px;padding:13px}.stat-num{font-size:24px;font-weight:900;color:var(--blue-dark);line-height:1}.stat-label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.35}@media(max-width:780px){.stats-grid{grid-template-columns:1fr}}.pill{font-size:12px;font-weight:800;border-radius:999px;padding:7px 10px;background:#edf8ff;color:#2177ad}.help-text{margin:-2px 0 8px;color:var(--muted);font-size:13px;line-height:1.5;background:#f7fcff;border:1px solid var(--border);border-radius:14px;padding:10px 12px}.image-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.image-box{display:inline-block}.image-caption{font-size:12px;color:var(--muted);margin-top:5px;text-align:center;max-width:120px}@media(max-width:780px){.container{grid-template-columns:1fr}.row,.admin-tools{grid-template-columns:1fr}.card{padding:16px;border-radius:18px}.gift-head{flex-direction:column}.tag{white-space:normal}}
   </style>
 </head>
 <body>
   <header>
     <h1>🎁 Skyward Gift Tracking</h1>
-    <p>Form online dùng chung: người gửi nhập thông tin quà, admin duyệt và cập nhật lộ trình; người gửi tra cứu bằng 4 số cuối SĐT.</p>
+    <p>Form online dùng chung: tiếp nhận thông tin gửi quà, admin duyệt và cập nhật lộ trình; sky tra cứu thông tin bằng 4 số cuối SĐT.</p>
   </header>
 
   <main class="container">
@@ -78,7 +78,6 @@
         <label>Mật khẩu admin</label>
         <input id="adminPassword" type="password" placeholder="Nhập mật khẩu tài khoản Firebase Auth" />
         <button id="adminLoginBtn" class="btn-primary">Đăng nhập admin</button>
-        <div id="adminLoginNotice" class="notice show warn">Admin đăng nhập bằng Firebase Authentication. Mật khẩu không còn nằm trong file HTML.</div>
       </div>
 
       <div id="adminPanel" class="hidden">
@@ -129,10 +128,20 @@
 
     const COLLECTION_NAME = "gifts";
 
-    // Sửa 2 dòng địa chỉ CTV thật tại đây trước khi public web.
+    // Sửa thông tin CTV thật tại đây trước khi public web.
+    // Khi admin chấp nhận quà, phần tra cứu sẽ hiển thị mỗi thông tin 1 hàng:
+    // Tên người nhận / Địa chỉ / Số điện thoại.
     const CTV_ADDRESSES = {
-      hn: "[Điền địa chỉ CTV tại Hà Nội]",
-      hcm: "[Điền địa chỉ CTV tại HCM]"
+      hn: {
+        receiver: "Hồng Nhung",
+        address: "350 Đa Tốn, Gia Lâm, Hà Nội",
+        phone: "0986851667"
+      },
+      hcm: {
+        receiver: "Chú Oanh (gửi Ngọc Anh)",
+        address: "124/91/8 Phan Huy Ích, P15, Tân Bình, TP HCM",
+        phone: "0988 098 999"
+      }
     };
 
     const statusMap = {
@@ -202,9 +211,9 @@
       return sendAddress || "-";
     }
 
-    function getCtvAddress(sendAddress = "") {
+    function getCtvInfo(sendAddress = "") {
       const key = addressKey(sendAddress);
-      return key ? CTV_ADDRESSES[key] : "";
+      return key ? CTV_ADDRESSES[key] : null;
     }
 
     function shouldShowCtvAddress(status) {
@@ -295,9 +304,16 @@
           ${proofSrc ? `<div class="image-box"><img class="proof" src="${proofSrc}" onclick="window.open('${proofSrc}', '_blank')" alt="Minh chứng Sky" /><div class="image-caption">Minh chứng Sky</div></div>` : ""}
           ${giftImageSrc ? `<div class="image-box"><img class="proof" src="${giftImageSrc}" onclick="window.open('${giftImageSrc}', '_blank')" alt="Ảnh món quà" /><div class="image-caption">Ảnh món quà / mẫu</div></div>` : ""}
         </div>` : "";
-      const ctvAddress = getCtvAddress(gift.sendAddress);
-      const ctvBox = (!isAdmin && shouldShowCtvAddress(gift.status) && ctvAddress)
-        ? `<div class="ctv-box">✅ Admin đã chấp nhận nhận quà. Bạn vui lòng gửi quà tới địa chỉ CTV tại <b>${escapeHtml(displayCity(gift.sendAddress))}</b>:<br><b>${escapeHtml(ctvAddress)}</b></div>`
+      const ctvInfo = getCtvInfo(gift.sendAddress);
+      const ctvBox = (!isAdmin && shouldShowCtvAddress(gift.status) && ctvInfo)
+        ? `<div class="ctv-box">
+            ✅ Admin đã chấp nhận nhận quà. Bạn vui lòng gửi quà tới CTV tại <b>${escapeHtml(displayCity(gift.sendAddress))}</b>:
+            <div class="ctv-detail">
+              <div class="ctv-row"><b>Tên người nhận:</b> ${escapeHtml(ctvInfo.receiver || "-")}</div>
+              <div class="ctv-row"><b>Địa chỉ:</b> ${escapeHtml(ctvInfo.address || "-")}</div>
+              <div class="ctv-row"><b>Số điện thoại:</b> ${escapeHtml(ctvInfo.phone || "-")}</div>
+            </div>
+          </div>`
         : "";
       const adminTools = isAdmin ? `
         <div class="admin-tools">
