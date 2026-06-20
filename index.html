@@ -16,7 +16,10 @@
   </header>
 
   <main class="container">
-    
+    <section id="setupBox" class="card full hidden">
+      <h2>Chưa cấu hình Firebase</h2>
+      <div class="setup-code">Vui lòng kiểm tra firebaseConfig trong file HTML trước khi public web.</div>
+    </section>
 
     <section class="card">
       <h2>Gửi thông tin món quà</h2>
@@ -45,8 +48,8 @@
 
         <div class="row">
           <div>
-            <label>4 số cuối SĐT</label>
-            <input id="phoneLast4" inputmode="numeric" required maxlength="4" pattern="[0-9]{4}" placeholder="VD: 1234" />
+            <label>Số điện thoại người gửi</label>
+            <input id="phoneFull" inputmode="tel" required maxlength="15" pattern="[0-9\s+\-]{9,15}" placeholder="VD: 0986868686" />
           </div>
           <div>
             <label>Tên người gửi</label>
@@ -78,6 +81,7 @@
         <label>Mật khẩu admin</label>
         <input id="adminPassword" type="password" placeholder="Nhập mật khẩu tài khoản Firebase Auth" />
         <button id="adminLoginBtn" class="btn-primary">Đăng nhập admin</button>
+        <div id="adminLoginNotice" class="notice"></div>
       </div>
 
       <div id="adminPanel" class="hidden">
@@ -233,6 +237,7 @@
         id,
         giftName: data.giftName || "",
         sendAddress: data.sendAddress || "",
+        phoneFull: data.phoneFull || "",
         phoneLast4: data.phoneLast4 || "",
         senderName: data.senderName || "",
         note: data.note || "",
@@ -333,7 +338,12 @@
           <div class="gift-head">
             <div>
               <div class="gift-title">${escapeHtml(gift.giftName)}</div>
-              <div class="meta">Người gửi: ${escapeHtml(gift.senderName || "Ẩn danh")} · 4 số cuối SĐT: ${escapeHtml(gift.phoneLast4)}</div>
+              <div class="meta">
+                Người gửi: ${escapeHtml(gift.senderName || "Ẩn danh")} · 
+                ${isAdmin 
+                  ? `SĐT: ${escapeHtml(gift.phoneFull || gift.phoneLast4 || "-")}` 
+                  : `4 số cuối SĐT: ${escapeHtml(gift.phoneLast4 || "-")}`}
+              </div>
             </div>
             <span class="tag ${st.className}">${st.text}</span>
           </div>
@@ -409,10 +419,11 @@
 
     $("giftForm").addEventListener("submit", async e => {
       e.preventDefault();
-      const phoneLast4 = $("phoneLast4").value.trim();
+      const phoneFull = $("phoneFull").value.trim().replace(/[\s\-+]/g, "");
+      const phoneLast4 = phoneFull.slice(-4);
       const file = $("proofImage").files[0];
       const giftFile = $("giftImage").files[0];
-      if (!/^\d{4}$/.test(phoneLast4)) return showNotice($("submitNotice"), "Vui lòng nhập đúng 4 số cuối SĐT.", "warn");
+      if (!/^\d{9,15}$/.test(phoneFull)) return showNotice($("submitNotice"), "Vui lòng nhập đúng số điện thoại.", "warn");
       if (!file) return showNotice($("submitNotice"), "Vui lòng upload ảnh minh chứng Sky.", "warn");
       if (!giftFile) return showNotice($("submitNotice"), "Vui lòng upload ảnh món quà hoặc ảnh mẫu.", "warn");
       if (file.size > 8 * 1024 * 1024) return showNotice($("submitNotice"), "Ảnh minh chứng Sky tối đa 8MB. Web sẽ tự nén ảnh trước khi lưu.", "warn");
@@ -427,6 +438,7 @@
         await addDoc(collection(db, COLLECTION_NAME), {
           giftName: $("giftName").value.trim(),
           sendAddress: $("sendAddress").value,
+          phoneFull,
           phoneLast4,
           senderName: $("senderName").value.trim(),
           note: $("note").value.trim(),
@@ -441,7 +453,7 @@
           updatedAt: serverTimestamp()
         });
         e.target.reset();
-        showNotice($("submitNotice"), "Đã gửi thông tin thành công. Bạn có thể tra cứu lại bằng 4 số cuối SĐT.");
+        showNotice($("submitNotice"), "Đã gửi thông tin thành công. Khi cần tra cứu, bạn chỉ cần nhập 4 số cuối SĐT.");
         if (isAllowedAdmin(currentAdminUser)) renderAdminList();
       } catch (err) {
         console.error(err);
